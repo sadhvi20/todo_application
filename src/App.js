@@ -11,7 +11,7 @@ function App() {
 
   const handleChange=(id) =>{
     setTodos(
-      todos.length>0 && todos?.map(todo => {
+      todos?.length>0 && todos?.map(todo => {
         if (todo.id === id) {
           return {
             ...todo,
@@ -25,7 +25,7 @@ function App() {
 
   const handleEdit=(id, newTitle) =>{
     setTodos(
-     todos.length>0 && todos?.map(todo => {
+     todos?.length>0 && todos?.map(todo => {
         if (todo.id === id) {
           return {
             ...todo,
@@ -39,8 +39,8 @@ function App() {
 
   const handleAdd=(newTitle)=> {
     if(newTitle){
-      let duplicateTitle=todos.length>0 && todos?.filter(todo => todo.title===newTitle)
-      if(duplicateTitle.length>0){
+      let duplicateTitle=todos?.length>0 && todos?.filter(todo => todo?.title===newTitle)
+      if(duplicateTitle?.length>0){
         return todos;
       }
       else{
@@ -73,7 +73,7 @@ function App() {
       </form>
       <button className="clear" onClick={handleClearCompleted}>Clear Completed</button>
       <ul className="list">
-        {todos.length>0 && todos?.map(todo => (
+        {todos?.length>0 && todos?.map(todo => (
           <Todo key={todo.id} todo={todo} handleChange={handleChange} handleEdit={handleEdit} />
         ))}
       </ul>
