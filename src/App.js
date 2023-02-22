@@ -39,11 +39,6 @@ function App() {
 
   const handleAdd=(newTitle)=> {
     if(newTitle){
-      let duplicateTitle=todos?.length>0 && todos?.filter(todo => todo?.title===newTitle)
-      if(duplicateTitle?.length>0){
-        return todos;
-      }
-      else{
         setTodos([
           ...todos,
           {
@@ -52,7 +47,6 @@ function App() {
             completed: false
           }
         ]);
-      }
     }
   }
 
@@ -65,6 +59,7 @@ function App() {
       <h1>Todo List</h1>
       <form onSubmit={event => {
         event.preventDefault();
+        console.log(event?.target?.newTodo?.value)
         handleAdd(event?.target?.newTodo?.value);
         event.target.newTodo.value = "";
       }}>
