@@ -65,9 +65,9 @@ function App() {
   return (
     <div className="app">
       <h1>Todo List</h1>
-      <form onSubmit={event =>handleAdd(event)}>
+      <form>
         <input type="text" name="newTodo" placeholder="Enter a new todo item" />
-        <button type="submit">Add</button>
+        <button onClick={event =>handleAdd(event)}>Add</button>
       </form>
       <button className="clear" onClick={handleClearCompleted}>Clear Completed</button>
       <ul className="list">
