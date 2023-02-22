@@ -49,7 +49,7 @@ function App() {
             ...todos,
             {
               id: new Date(),
-              title: currentTitle,
+              title: newTitle,
               completed: false
             }
           ]);
@@ -58,7 +58,7 @@ function App() {
           setTodos([
             {
               id: new Date(),
-              title: currentTitle,
+              title: newTitle,
               completed: false
             }
           ]);
