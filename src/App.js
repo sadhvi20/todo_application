@@ -38,15 +38,21 @@ function App() {
   }
 
   const handleAdd=(newTitle)=> {
-    if(newTitle){
+    if(newTitle?.target?.newTodo?.value){
+      let duplicateTitle=todos?.length>0 && todos?.filter(todo => todo?.title===newTitle?.target?.newTodo?.value)
+      if(duplicateTitle?.length>0){
+        return todos;
+      }
+      else{
         setTodos([
           ...todos,
           {
             id: new Date(),
-            title: newTitle,
+            title: newTitle?.target?.newTodo?.value,
             completed: false
           }
         ]);
+      }
     }
   }
 
@@ -59,8 +65,7 @@ function App() {
       <h1>Todo List</h1>
       <form onSubmit={event => {
         event.preventDefault();
-        console.log(event?.target?.newTodo?.value)
-        handleAdd(event?.target?.newTodo?.value);
+        handleAdd(event);
         event.target.newTodo.value = "";
       }}>
         <input type="text" name="newTodo" placeholder="Enter a new todo item" />
