@@ -38,6 +38,7 @@ function App() {
   }
 
   const handleAdd=(newTitle)=> {
+    newTitle.preventDefault();
     if(newTitle?.target?.newTodo?.value){
       let duplicateTitle=todos?.length>0 && todos?.filter(todo => todo?.title===newTitle?.target?.newTodo?.value)
       if(duplicateTitle?.length>0){
@@ -54,6 +55,7 @@ function App() {
         ]);
       }
     }
+    newTitle.target.newTodo.value = "";
   }
 
   const handleClearCompleted=() =>{
@@ -63,11 +65,7 @@ function App() {
   return (
     <div className="app">
       <h1>Todo List</h1>
-      <form onSubmit={event => {
-        event.preventDefault();
-        handleAdd(event);
-        event.target.newTodo.value = "";
-      }}>
+      <form onSubmit={event =>handleAdd(event)}>
         <input type="text" name="newTodo" placeholder="Enter a new todo item" />
         <button type="submit">Add</button>
       </form>
