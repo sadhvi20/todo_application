@@ -66,7 +66,7 @@ function App() {
       <form onSubmit={event => {
         event.preventDefault();
         handleAdd(event?.target?.newTodo?.value);
-        event?.target?.newTodo?.value = "";
+        event.target.newTodo.value = "";
       }}>
         <input type="text" name="newTodo" placeholder="Enter a new todo item" />
         <button type="submit">Add</button>
