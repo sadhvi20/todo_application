@@ -4,7 +4,7 @@ import './App.css';
 
 function App() {
   const [todos, setTodos] = useState(JSON.parse(localStorage.getItem('todos')));
-  const [currentTitle, setcurrentTitle]=useState('')
+
   useEffect(() => {
       localStorage.setItem('todos', JSON.stringify(todos));
   }, [todos]);
@@ -37,10 +37,9 @@ function App() {
     );
   }
 
-  const handleAdd=(e)=> {
-    e.preventDefault();
-    if(currentTitle){
-      let duplicateTitle=todos?.length>0 && todos?.filter(todo => todo?.title===currentTitle)
+  const handleAdd=(newTitle)=> {
+    if(newTitle){
+      let duplicateTitle=todos?.length>0 && todos?.filter(todo => todo?.title===newTitle)
       if(duplicateTitle?.length>0){
         return todos;
       }
@@ -66,7 +65,6 @@ function App() {
         }
       }
     }
-    setcurrentTitle('')
   }
 
   const handleClearCompleted=() =>{
@@ -76,9 +74,13 @@ function App() {
   return (
     <div className="app">
       <h1>Todo List</h1>
-      <form>
-        <input type="text" name="newTodo" placeholder="Enter a new todo item" value={currentTitle} onChange={(e)=>setcurrentTitle(e?.target?.value)}/>
-        <button type="submit" onClick={(e)=>handleAdd(e)}>Add</button>
+      <form onSubmit={event => {
+        event.preventDefault();
+        handleAdd(event?.target?.newTodo?.value);
+        event.target.newTodo.value = "";
+      }}>
+        <input type="text" name="newTodo" placeholder="Enter a new todo item" />
+        <button type="submit">Add</button>
       </form>
       <button className="clear" onClick={handleClearCompleted}>Clear Completed</button>
       <ul className="list">
