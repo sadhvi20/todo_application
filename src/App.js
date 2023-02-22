@@ -45,14 +45,25 @@ function App() {
         return todos;
       }
       else{
-        setTodos([
-          ...todos,
-          {
-            id: new Date(),
-            title: currentTitle,
-            completed: false
-          }
-        ]);
+        if(todos?.length>0){
+          setTodos([
+            ...todos,
+            {
+              id: new Date(),
+              title: currentTitle,
+              completed: false
+            }
+          ]);
+        }
+        else{
+          setTodos([
+            {
+              id: new Date(),
+              title: currentTitle,
+              completed: false
+            }
+          ]);
+        }
       }
     }
     setcurrentTitle('')
